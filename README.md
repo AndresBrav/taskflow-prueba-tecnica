@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
+## Nombre del proyecto y breve descripción.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    El nombre del proyecto es TaskFlow
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    TaskFlow es una aplicación web que una startup necesita para gestionar proyectos y tareas.
+    El sistema permitirá crear proyectos, agregar tareas dentro de cada proyecto y hacer seguimiento del estado de las tareas.
+    No se requiere autenticación de usuarios, ya que la aplicación está pensada para uso individual.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tecnologías utilizadas (con versiones).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Decisiones técnicas / Librerías utilizadas: sección donde justifiques cada librería adicional que hayas usado (por qué la elegiste, qué problema resuelve). Esto se evalúa positivamente.
 
-## Learn More
+## Requisitos previos (Node.js, PostgreSQL, etc.).
+    - contar con la version minima de Node js 20.9
+    - contar con DBngin para administrar base de datos en nuestro caso PostgreSQL
 
-To learn more about Next.js, take a look at the following resources:
+## Instrucciones de instalación paso a paso:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Clonar repositorio.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Instalar dependencias.
 
-## Deploy on Vercel
+## Configurar variables de entorno.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Ejecutar migraciones de Prisma.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Ejecutar seed (datos de ejemplo).
+
+## Levantar el servidor de desarrollo.
+
+## Variables de entorno necesarias (con ejemplo).
+
+## Capturas de pantalla de la aplicación (mínimo 3).
