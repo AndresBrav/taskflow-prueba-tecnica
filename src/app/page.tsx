@@ -1,73 +1,42 @@
-import { prisma } from "@/libs/prisma";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import StatsCards from "@/components/dashboard/stats-cards";
+import RecentTasksList from "@/components/dashboard/recent-tasks-list";
+import TopPendingProjects from "@/components/dashboard/top-pending-projects";
+import  {getDashboardData}  from "@/lib/data/dashboard";
 
-export default async function HomePage() {
-  const proyectos = await prisma.project.findMany({
-    include: {
-      tasks: {
-        orderBy: {
-          createdAt: "desc",
-        },
-      },
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+
+export default async function DashboardPage() {
+  const { stats, recentTasks, topPendingProjects } = await getDashboardData();
 
   return (
     <main className="min-h-screen p-6">
-      <div className="mx-auto max-w-5xl space-y-6">
-
-        <h1 className="text-3xl font-bold">TaskFlow</h1>
-
-        {proyectos.map((proyecto) => (
-          <section
-            key={proyecto.id}
-            className="rounded-xl border p-5"
-          >
-            <div className="flex items-center gap-3 mb-2">
-              <div
-                className="h-3 w-3 rounded-full border"
-                style={{ backgroundColor: proyecto.color }}
-              />
-              <h2 className="text-xl font-semibold">{proyecto.name}</h2>
-            </div>
-
-            <p className="text-sm mb-4">
-              {proyecto.description ?? "Sin descripcion"}
+      <div className="mx-auto max-w-7xl space-y-8">
+        <section className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
+          <div className="">
+            <h1 className="text-3xl font-bold">Dashboard</h1>
+            <p className="text-sm">
+              Resumen general de proyectos y tareas de TaskFlow
             </p>
+          </div>
 
-            <div className="space-y-2">
-              {proyecto.tasks.length === 0 ? (
-                <p className="text-sm">Sin tareas</p>
-              ) : (
-                proyecto.tasks.map((task) => (
-                  <div
-                    key={task.id}
-                    className="rounded-lg border p-3"
-                  >
-                    <h3 className="font-medium">{task.title}</h3>
+          <div className="flex flex-wrap gap-3">
+            <Button >
+              <Link href="/projects/new">Nuevo proyecto</Link>
+            </Button>
 
-                    <p className="text-sm">
-                      {task.description ?? "Sin descripcion"}
-                    </p>
+            <Button variant="outline" >
+              <Link href="/projects">Ver proyectos</Link>
+            </Button>
+          </div>
+        </section>
 
-                    <div className="flex gap-2 mt-2 text-xs">
-                      <span className="border px-2 py-1 rounded">
-                        {task.status}
-                      </span>
+        <StatsCards stats={stats} />
 
-                      <span className="border px-2 py-1 rounded">
-                        {task.priority}
-                      </span>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </section>
-        ))}
-
+        <section className="grid gap-6 lg:grid-cols-2">
+          <RecentTasksList tasks={recentTasks} />
+          <TopPendingProjects projects={topPendingProjects} />
+        </section>
       </div>
     </main>
   );

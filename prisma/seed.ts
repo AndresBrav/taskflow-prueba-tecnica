@@ -47,7 +47,7 @@ async function main() {
                     },
                     {
                         title: "Agregar formulario de contacto",
-                        description: "Formulario funcional con validaciones",
+                        description: "Formulario con validaciones",
                         status: "PENDING",
                         priority: "HIGH",
                     },
@@ -82,20 +82,20 @@ async function main() {
                         priority: "MEDIUM",
                     },
                     {
-                        title: "Ajustar estilos",
-                        description: "Mejoras visuales generales",
+                        title: "Ajustar estilos visuales",
+                        description: "Mejoras generales de interfaz",
                         status: "COMPLETED",
                         priority: "LOW",
                     },
                     {
                         title: "Integrar autenticacion",
-                        description: "Login y registro",
+                        description: "Login y registro de usuarios",
                         status: "PENDING",
                         priority: "HIGH",
                     },
                     {
-                        title: "Implementar perfil de usuario",
-                        description: "Pantalla de perfil editable",
+                        title: "Crear perfil de usuario",
+                        description: "Pantalla editable de perfil",
                         status: "IN_PROGRESS",
                         priority: "MEDIUM",
                     },
@@ -124,7 +124,7 @@ async function main() {
                         priority: "MEDIUM",
                     },
                     {
-                        title: "Agregar tabla de usuarios",
+                        title: "Tabla de usuarios",
                         description: "Listado de usuarios del sistema",
                         status: "COMPLETED",
                         priority: "LOW",
@@ -137,7 +137,175 @@ async function main() {
                     },
                     {
                         title: "Mejorar accesibilidad",
-                        description: "Contrastes y navegacion por teclado",
+                        description: "Navegacion por teclado",
+                        status: "IN_PROGRESS",
+                        priority: "MEDIUM",
+                    },
+                ],
+            },
+        },
+    });
+
+    await prisma.project.create({
+        data: {
+            name: "Sistema Marketing",
+            description: "Herramienta para gestionar campanas",
+            color: "#ef4444",
+            tasks: {
+                create: [
+                    {
+                        title: "Crear pagina de campana",
+                        description: "Landing para promociones",
+                        status: "PENDING",
+                        priority: "HIGH",
+                    },
+                    {
+                        title: "Integrar correo",
+                        description: "Conexion con servicio de email",
+                        status: "IN_PROGRESS",
+                        priority: "MEDIUM",
+                    },
+                    {
+                        title: "Panel de analitica",
+                        description: "Metricas de campanas",
+                        status: "COMPLETED",
+                        priority: "LOW",
+                    },
+                    {
+                        title: "Segmentar audiencia",
+                        description: "Agrupar usuarios por interes",
+                        status: "PENDING",
+                        priority: "HIGH",
+                    },
+                    {
+                        title: "Optimizar rendimiento",
+                        description: "Reducir tiempo de carga",
+                        status: "IN_PROGRESS",
+                        priority: "MEDIUM",
+                    },
+                ],
+            },
+        },
+    });
+
+    await prisma.project.create({
+        data: {
+            name: "Servicio API",
+            description: "Backend para servicios del sistema",
+            color: "#6366f1",
+            tasks: {
+                create: [
+                    {
+                        title: "Crear endpoints REST",
+                        description: "Rutas iniciales del API",
+                        status: "PENDING",
+                        priority: "HIGH",
+                    },
+                    {
+                        title: "Agregar validaciones",
+                        description: "Validar datos de entrada",
+                        status: "IN_PROGRESS",
+                        priority: "MEDIUM",
+                    },
+                    {
+                        title: "Escribir pruebas unitarias",
+                        description: "Test para endpoints",
+                        status: "COMPLETED",
+                        priority: "LOW",
+                    },
+                    {
+                        title: "Agregar sistema de logs",
+                        description: "Registrar eventos del sistema",
+                        status: "PENDING",
+                        priority: "HIGH",
+                    },
+                    {
+                        title: "Mejorar manejo de errores",
+                        description: "Respuestas claras del API",
+                        status: "IN_PROGRESS",
+                        priority: "MEDIUM",
+                    },
+                ],
+            },
+        },
+    });
+
+    await prisma.project.create({
+        data: {
+            name: "Plataforma Ecommerce",
+            description: "Sistema de tienda en linea",
+            color: "#22c55e",
+            tasks: {
+                create: [
+                    {
+                        title: "Catalogo de productos",
+                        description: "Listado de productos",
+                        status: "PENDING",
+                        priority: "HIGH",
+                    },
+                    {
+                        title: "Carrito de compras",
+                        description: "Agregar y eliminar productos",
+                        status: "IN_PROGRESS",
+                        priority: "MEDIUM",
+                    },
+                    {
+                        title: "Proceso de pago",
+                        description: "Flujo de checkout",
+                        status: "COMPLETED",
+                        priority: "LOW",
+                    },
+                    {
+                        title: "Historial de ordenes",
+                        description: "Registro de compras",
+                        status: "PENDING",
+                        priority: "HIGH",
+                    },
+                    {
+                        title: "Mejorar busqueda",
+                        description: "Filtrar productos",
+                        status: "IN_PROGRESS",
+                        priority: "MEDIUM",
+                    },
+                ],
+            },
+        },
+    });
+
+    await prisma.project.create({
+        data: {
+            name: "Sistema Analitico",
+            description: "Analisis de datos del negocio",
+            color: "#8b5cf6",
+            tasks: {
+                create: [
+                    {
+                        title: "Recolectar eventos",
+                        description: "Registrar acciones de usuario",
+                        status: "PENDING",
+                        priority: "HIGH",
+                    },
+                    {
+                        title: "Crear graficos",
+                        description: "Visualizar metricas",
+                        status: "IN_PROGRESS",
+                        priority: "MEDIUM",
+                    },
+                    {
+                        title: "Generar reportes",
+                        description: "Resumen mensual",
+                        status: "COMPLETED",
+                        priority: "LOW",
+                    },
+                    {
+                        title: "Exportar datos",
+                        description: "Descargar en CSV",
+                        status: "PENDING",
+                        priority: "HIGH",
+                    },
+                    {
+                        title: "Optimizar consultas",
+                        description: "Mejorar rendimiento DB",
                         status: "IN_PROGRESS",
                         priority: "MEDIUM",
                     },
@@ -149,7 +317,7 @@ async function main() {
     const totalProjects = await prisma.project.count();
     const totalTasks = await prisma.task.count();
 
-    console.log("Seed completado correctamente");
+    console.log("Seed completado");
     console.log({ totalProjects, totalTasks });
 }
 
