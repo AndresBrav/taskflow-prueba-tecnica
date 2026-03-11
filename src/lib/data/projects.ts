@@ -1,5 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Task } from "@/generated/prisma/client";
+import { notFound } from "next/navigation";
+
 
 export async function getProjects() {
     const projects = await prisma.project.findMany({
@@ -10,7 +12,6 @@ export async function getProjects() {
 
     return projects;
 }
-
 
 export function countTasks(tasks: Task[]) {
     let pending = 0;
@@ -37,3 +38,18 @@ export function countTasks(tasks: Task[]) {
         completed,
     };
 }
+
+export const getProjectById = async (id: string) => {
+    const project = await prisma.project.findUnique({
+        where: {
+            id: id,
+        },
+    });
+
+    if (!project) {
+        notFound();
+    }
+    return project;
+};
+
+

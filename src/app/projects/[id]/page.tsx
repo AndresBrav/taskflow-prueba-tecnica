@@ -13,6 +13,9 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { deleteProject } from "@/actions/project-actions";
+
+
 
 type ProjectDetailPageProps = {
     params: Promise<{
@@ -127,8 +130,19 @@ const ProjectDetailPage = async ({ params }: ProjectDetailPageProps) => {
                             <Link href="/projects">Volver</Link>
                         </Button>
 
-                        <Button variant="outline">Editar proyecto</Button>
-                        <Button variant="destructive">Eliminar proyecto</Button>
+                        {/* <Button variant="outline">Editar proyecto</Button>
+                         */}
+                        <Button variant="outline" asChild>
+                            <Link href={`/projects/${project.id}/edit`}>Editar proyecto</Link>
+                        </Button>
+
+                        {/* <Button variant="destructive">Eliminar proyecto</Button> */}
+                        <form action={deleteProject}>
+                            <input type="hidden" name="id" value={project.id} />
+                            <Button type="submit" variant="destructive">
+                                Eliminar proyecto
+                            </Button>
+                        </form>
                     </div>
                 </section>
 
@@ -226,13 +240,13 @@ const ProjectDetailPage = async ({ params }: ProjectDetailPageProps) => {
                                 </Select>
                             </div>
 
-                            <div className="flex gap-2">
+                            {/* <div className="flex gap-2">
                                 <Button className="w-full" variant="outline">
                                     Limpiar
                                 </Button>
 
                                 <Button className="w-full">Aplicar</Button>
-                            </div>
+                            </div> */}
                         </CardContent>
                     </Card>
                 </section>
