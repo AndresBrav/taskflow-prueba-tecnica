@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { format } from "date-fns";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -59,7 +58,7 @@ export default function RecentTasksList({ tasks }: RecentTasksListProps) {
                                     </div>
 
                                     <p className="text-xs text-muted-foreground">
-                                        {format(task.createdAt, "dd/MM/yyyy")}
+                                        {new Date(task.createdAt).toLocaleDateString()}
                                     </p>
                                 </div>
 
