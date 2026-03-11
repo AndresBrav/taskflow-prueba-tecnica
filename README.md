@@ -11,6 +11,8 @@
 ## Tecnologías utilizadas (con versiones).
 
 ## Decisiones técnicas / Librerías utilizadas: sección donde justifiques cada librería adicional que hayas usado (por qué la elegiste, qué problema resuelve). Esto se evalúa positivamente.
+    Se ha usado shadcn/ui como librería de componentes para la interfaz de usuario.
+    La principal razón para elegir esta librería es que acelera el desarrollo de la interfaz y junto con Tailwind css te permite construir interfaces visualmente consistentes
 
 ## Requisitos previos (Node.js, PostgreSQL, etc.).
     - contar con la version minima de Node js 20.9
