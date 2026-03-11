@@ -10,7 +10,7 @@ export default async function DashboardPage() {
   const { stats, recentTasks, topPendingProjects } = await getDashboardData();
 
   return (
-    <main className="min-h-screen p-6">
+    <div className="min-h-screen p-6">
       <div className="mx-auto max-w-7xl space-y-8">
         <section className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
           <div className="">
@@ -38,6 +38,6 @@ export default async function DashboardPage() {
           <TopPendingProjects projects={topPendingProjects} />
         </section>
       </div>
-    </main>
+    </div>
   );
 }
