@@ -18,11 +18,19 @@ const AllProjects = async () => {
                         Lista de Proyectos
                     </h1>
 
-                    <Button asChild>
-                        <Link href="/projects/new">
-                            Nuevo Proyecto
-                        </Link>
-                    </Button>
+                    <div className="flex gap-3">
+                        <Button variant="outline" asChild>
+                            <Link href="/">Volver</Link>
+                        </Button>
+
+                        <Button asChild>
+                            <Link href="/projects/new">
+                                Nuevo Proyecto
+                            </Link>
+                        </Button>
+
+                    </div>
+
 
                 </section>
 
