@@ -1,14 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { StatsCardsProps } from "@/types/index";
 
-interface StatsCardsProps {
-    stats: {
-        totalProjects: number;
-        totalTasks: number;
-        pendingTasks: number;
-        inProgressTasks: number;
-        completedTasks: number;
-    };
-}
 
 export default function StatsCards({ stats }: StatsCardsProps) {
     const cards = [

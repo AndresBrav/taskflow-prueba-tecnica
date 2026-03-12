@@ -2,23 +2,8 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-interface RecentTask {
-    id: string;
-    title: string;
-    description: string | null;
-    status: "PENDING" | "IN_PROGRESS" | "COMPLETED";
-    priority: "LOW" | "MEDIUM" | "HIGH";
-    createdAt: Date;
-    project: {
-        id: string;
-        name: string;
-        color: string;
-    };
-}
-
-interface RecentTasksListProps {
-    tasks: RecentTask[];
-}
+import type { RecentTasksListProps } from "@/types/index"; //tipos del componente
+import { formatPriority, formatStatus } from "@/lib/task-utils";
 
 export default function RecentTasksList({ tasks }: RecentTasksListProps) {
     return (
@@ -79,30 +64,4 @@ export default function RecentTasksList({ tasks }: RecentTasksListProps) {
             </CardContent>
         </Card>
     );
-}
-
-function formatStatus(status: RecentTask["status"]) {
-    switch (status) {
-        case "PENDING":
-            return "Pendiente";
-        case "IN_PROGRESS":
-            return "En progreso";
-        case "COMPLETED":
-            return "Completada";
-        default:
-            return status;
-    }
-}
-
-function formatPriority(priority: RecentTask["priority"]) {
-    switch (priority) {
-        case "LOW":
-            return "Baja";
-        case "MEDIUM":
-            return "Media";
-        case "HIGH":
-            return "Alta";
-        default:
-            return priority;
-    }
 }

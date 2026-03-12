@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
-import { Task } from "@/generated/prisma/client";
+import { Prisma, Project, Task } from "@/generated/prisma/client";
 import { notFound } from "next/navigation";
-
 
 export async function getProjects() {
     const projects = await prisma.project.findMany({
@@ -39,7 +38,8 @@ export function countTasks(tasks: Task[]) {
     };
 }
 
-export const getProjectById = async (id: string) => {
+//obtenemos el proyecto por su id, si no existe se muestra la página de 404
+export const getProjectById = async (id: string):Promise<Project> => {
     const project = await prisma.project.findUnique({
         where: {
             id: id,
@@ -52,4 +52,29 @@ export const getProjectById = async (id: string) => {
     return project;
 };
 
+type ProjectWithTasks = Prisma.ProjectGetPayload<{
+    include: { tasks: true };
+}>;
 
+export const getProjectWithTasksById = async (
+    id: string,
+): Promise<ProjectWithTasks> => {
+    const project = await prisma.project.findUnique({
+        where: {
+            id: id,
+        },
+        include: {
+            tasks: {
+                orderBy: {
+                    createdAt: "desc",
+                },
+            },
+        },
+    });
+
+    if (!project) {
+        notFound();
+    }
+
+    return project;
+};

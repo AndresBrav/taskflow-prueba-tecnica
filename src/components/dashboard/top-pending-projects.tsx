@@ -1,16 +1,7 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { TopPendingProjectsProps } from "@/types/index";
 
-interface TopPendingProject {
-    id: string;
-    name: string;
-    color: string;
-    pendingCount: number;
-}
-
-interface TopPendingProjectsProps {
-    projects: TopPendingProject[];
-}
 
 export default function TopPendingProjects({
     projects,

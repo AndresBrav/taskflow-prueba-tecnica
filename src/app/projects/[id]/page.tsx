@@ -1,7 +1,4 @@
-import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
 import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -14,80 +11,15 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { deleteProject } from "@/actions/project-actions";
+import type { ProjectProps } from "@/types/index"; //tipos del componente
+import { getProjectWithTasksById } from "@/lib/data/projects";
+import ProjectsTasksList from "@/components/project/projects-tasks";
 
 
-
-type ProjectDetailPageProps = {
-    params: Promise<{
-        id: string;
-    }>;
-};
-
-function getStatusStyles(status: string) {
-    if (status === "PENDING") {
-        return "bg-yellow-100 text-yellow-700 border-yellow-200";
-    }
-
-    if (status === "IN_PROGRESS") {
-        return "bg-blue-100 text-blue-700 border-blue-200";
-    }
-
-    if (status === "COMPLETED") {
-        return "bg-green-100 text-green-700 border-green-200";
-    }
-
-    return "bg-gray-100 text-gray-700 border-gray-200";
-}
-
-function getPriorityStyles(priority: string) {
-    if (priority === "HIGH") {
-        return "bg-red-100 text-red-700 border-red-200";
-    }
-
-    if (priority === "MEDIUM") {
-        return "bg-orange-100 text-orange-700 border-orange-200";
-    }
-
-    if (priority === "LOW") {
-        return "bg-gray-100 text-gray-700 border-gray-200";
-    }
-
-    return "bg-gray-100 text-gray-700 border-gray-200";
-}
-
-function formatStatus(status: string) {
-    if (status === "PENDING") return "Pendiente";
-    if (status === "IN_PROGRESS") return "En progreso";
-    if (status === "COMPLETED") return "Completada";
-    return status;
-}
-
-function formatPriority(priority: string) {
-    if (priority === "HIGH") return "Alta";
-    if (priority === "MEDIUM") return "Media";
-    if (priority === "LOW") return "Baja";
-    return priority;
-}
-
-const ProjectDetailPage = async ({ params }: ProjectDetailPageProps) => {
+const ProjectDetailPage = async ({ params }: ProjectProps) => {
     const { id } = await params;
-
-    const project = await prisma.project.findUnique({
-        where: {
-            id: id,
-        },
-        include: {
-            tasks: {
-                orderBy: {
-                    createdAt: "desc",
-                },
-            },
-        },
-    });
-
-    if (!project) {
-        notFound();
-    }
+    // obtenemos el proyecto con sus tareas, si no existe se muestra la página de 404
+    const project = await getProjectWithTasksById(id);
 
     return (
         <div className="min-h-screen p-6">
@@ -239,97 +171,13 @@ const ProjectDetailPage = async ({ params }: ProjectDetailPageProps) => {
                                     </SelectContent>
                                 </Select>
                             </div>
-
-                            {/* <div className="flex gap-2">
-                                <Button className="w-full" variant="outline">
-                                    Limpiar
-                                </Button>
-
-                                <Button className="w-full">Aplicar</Button>
-                            </div> */}
                         </CardContent>
                     </Card>
                 </section>
 
-                <section className="space-y-4">
-                    <div className="flex items-center justify-between">
-                        <h2 className="text-2xl font-bold">Tareas del proyecto</h2>
-                    </div>
+                {/* lista de tareas de los proyectos */}
+                <ProjectsTasksList project={project} />
 
-                    {project.tasks.length === 0 ? (
-                        <Card>
-                            <CardContent className="py-10 text-center">
-                                <p className="text-lg font-semibold">No hay tareas todavía</p>
-                                <p className="text-sm text-muted-foreground">
-                                    Agrega una nueva tarea para comenzar a trabajar en este proyecto.
-                                </p>
-                            </CardContent>
-                        </Card>
-                    ) : (
-                        <div className="grid gap-4">
-                            {project.tasks.map((task) => (
-                                <Card key={task.id} className="transition hover:shadow-md">
-                                    <CardContent className="space-y-5 p-5">
-                                        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                                            <div className="space-y-3">
-                                                <div className="flex flex-wrap items-center gap-2">
-                                                    <h3 className="text-lg font-semibold">{task.title}</h3>
-
-                                                    <span
-                                                        className={`rounded-full border px-3 py-1 text-xs font-medium ${getStatusStyles(task.status)}`}
-                                                    >
-                                                        {formatStatus(task.status)}
-                                                    </span>
-
-                                                    <span
-                                                        className={`rounded-full border px-3 py-1 text-xs font-medium ${getPriorityStyles(task.priority)}`}
-                                                    >
-                                                        Prioridad {formatPriority(task.priority)}
-                                                    </span>
-                                                </div>
-
-                                                <p className="text-sm text-muted-foreground">
-                                                    {task.description || "Sin descripción"}
-                                                </p>
-
-                                                <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
-                                                    <p>
-                                                        <span className="font-medium text-foreground">Creada:</span>{" "}
-                                                        {new Date(task.createdAt).toLocaleDateString()}
-                                                    </p>
-
-                                                    <p>
-                                                        <span className="font-medium text-foreground">Actualizada:</span>{" "}
-                                                        {new Date(task.updatedAt).toLocaleDateString()}
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex flex-col gap-2 sm:flex-row lg:flex-col">
-                                                <Select>
-                                                    <SelectTrigger className="w-full sm:w-[180px] lg:w-[180px]">
-                                                        <SelectValue placeholder="Cambiar estado" />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        <SelectGroup>
-                                                            <SelectLabel>Estados</SelectLabel>
-                                                            <SelectItem value="PENDING">Pendiente</SelectItem>
-                                                            <SelectItem value="IN_PROGRESS">En progreso</SelectItem>
-                                                            <SelectItem value="COMPLETED">Completada</SelectItem>
-                                                        </SelectGroup>
-                                                    </SelectContent>
-                                                </Select>
-
-                                                <Button variant="outline">Editar</Button>
-                                                <Button variant="destructive">Eliminar</Button>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    )}
-                </section>
             </div>
         </div>
     );

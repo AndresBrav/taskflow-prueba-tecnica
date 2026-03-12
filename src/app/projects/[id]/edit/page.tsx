@@ -6,14 +6,10 @@ import { updateProject } from "@/actions/project-actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getProjectById } from "@/lib/data/projects";
+import type { ProjectProps } from "@/types/index"; //tipos del componente
 
-type EditProjectPageProps = {
-    params: Promise<{
-        id: string;
-    }>;
-};
 
-const EditProjectPage = async ({ params }: EditProjectPageProps) => {
+const EditProjectPage = async ({ params }: ProjectProps) => {
     const { id } = await params;
 
     const project = await getProjectById(id);  //obtenemos el proyecto por su id, si no existe se muestra la página de 404
