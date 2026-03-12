@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono,Instrument_Sans, Roboto } from "next/font/google"; // Limpiamos los imports
+import { Geist_Mono, Roboto } from "next/font/google"; // Limpiamos los imports
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navegation from "@/components/navegation";
@@ -11,9 +11,9 @@ const geistMono = Geist_Mono({
 
 // Configurate Roboto
 const fontRoboto = Roboto({
-  weight: ["400", "500", "700"], 
+  weight: ["400", "500", "700"],
   subsets: ["latin"],
-  variable: "--font-sans", 
+  variable: "--font-sans",
 });
 
 
