@@ -8,14 +8,16 @@ export async function createTask(formData: FormData) {
   const idproject = formData.get('id') as string;
   const titletask = formData.get('titletask') as string;
   const prioritytasks = formData.get('prioritytasks') as string;
+  const statetask = formData.get('statetask') as string;
   const descriptiontask = formData.get('descriptiontask') as string;
 
   try {
-    // Crear una nueva tarea en la base de datos
+    // Create a new task in database
     const newTask = await prisma.task.create({
       data: {
         title: titletask,
         description: descriptiontask,
+        status: statetask as 'PENDING' | 'IN_PROGRESS' | 'COMPLETED',
         priority: prioritytasks as 'LOW' | 'MEDIUM' | 'HIGH',
         projectId: idproject,
       },

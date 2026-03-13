@@ -158,8 +158,28 @@ const ProjectDetailPage = async ({ params }: ProjectProps) => {
                       </SelectContent>
                     </Select>
                   </div>
-                </div>
 
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Estado</label>
+
+                    <Select name="statetask">
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Selecciona el Estado" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Estado</SelectLabel>
+                          <SelectItem value="PENDING">Pendiente</SelectItem>
+                          <SelectItem value="IN_PROGRESS">
+                            En progreso
+                          </SelectItem>
+                          <SelectItem value="COMPLETED">Completado</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <br />
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Descripción</label>
                   <textarea
