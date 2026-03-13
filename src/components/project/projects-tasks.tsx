@@ -16,7 +16,7 @@ import {
   getPriorityStyles,
   getStatusStyles,
 } from '@/lib/task-utils'; // función para obtener los estilos según el estado de la tareas
-import type { ProjectsTasksListProps } from '@/types/index'; //tipos del componente
+import type { ProjectsTasksListProps } from '@/types/index'; // types from component
 
 import {
   AlertDialog,
