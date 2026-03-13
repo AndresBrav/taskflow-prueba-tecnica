@@ -83,20 +83,6 @@ export const updateTask = async (formData: FormData) => {
   const prioritytasks = formData.get('prioritytasks') as string;
   const idProject = formData.get('idProject') as string;
 
-  console.log(
-    'id es',
-    id,
-    'title',
-    title,
-    'decription',
-    description,
-    'status',
-    status,
-    'priority',
-    prioritytasks,
-    idProject
-  );
-
   try {
     await prisma.task.update({
       where: {
