@@ -1,10 +1,9 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import StatsCards from "@/components/dashboard/stats-cards";
-import RecentTasksList from "@/components/dashboard/recent-tasks-list";
-import TopPendingProjects from "@/components/dashboard/top-pending-projects";
-import { getDashboardData } from "@/lib/data/dashboard";
-
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import StatsCards from '@/components/dashboard/stats-cards';
+import RecentTasksList from '@/components/dashboard/recent-tasks-list';
+import TopPendingProjects from '@/components/dashboard/top-pending-projects';
+import { getDashboardData } from '@/lib/data/dashboard';
 
 export default async function DashboardPage() {
   const { stats, recentTasks, topPendingProjects } = await getDashboardData();
@@ -21,11 +20,11 @@ export default async function DashboardPage() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Button >
+            <Button>
               <Link href="/projects/new">Nuevo proyecto</Link>
             </Button>
 
-            <Button variant="outline" >
+            <Button variant="outline">
               <Link href="/projects">Ver proyectos</Link>
             </Button>
           </div>
