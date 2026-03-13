@@ -74,3 +74,45 @@ export async function updateTaskStatus(formData: FormData) {
     console.error('Error al actualizar:', error);
   }
 }
+
+export const updateTask = async (formData: FormData) => {
+  const id = formData.get('id') as string;
+  const title = formData.get('title') as string;
+  const description = formData.get('description') as string;
+  const status = formData.get('status') as string;
+  const prioritytasks = formData.get('prioritytasks') as string;
+  const idProject = formData.get('idProject') as string;
+
+  console.log(
+    'id es',
+    id,
+    'title',
+    title,
+    'decription',
+    description,
+    'status',
+    status,
+    'priority',
+    prioritytasks,
+    idProject
+  );
+
+  try {
+    await prisma.task.update({
+      where: {
+        id: id,
+      },
+      data: {
+        title: title,
+        description: description,
+        status: status as 'PENDING' | 'IN_PROGRESS' | 'COMPLETED',
+        priority: prioritytasks as 'LOW' | 'MEDIUM' | 'HIGH',
+      },
+    });
+
+    revalidatePath(`/projects/${idProject}`);
+  } catch (error) {
+    console.log(error);
+  }
+  redirect(`/projects/${idProject}`);
+};

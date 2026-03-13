@@ -100,7 +100,12 @@ const ProjectsTasksList = async ({ project }: ProjectsTasksListProps) => {
                       projectId={project.id}
                     />
 
-                    <Button variant="outline">Editar</Button>
+                    {/* <Button variant="outline">Editar</Button> */}
+                    <Button variant="outline" asChild>
+                      <Link href={`/projects/${project.id}/${task.id}`}>
+                        Editar
+                      </Link>
+                    </Button>
                     {/* <Button variant="destructive">Eliminar</Button> */}
                     <AlertDialog>
                       {/* the Trigger  is the button*/}
