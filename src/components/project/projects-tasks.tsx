@@ -29,7 +29,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { deleteTask } from '@/actions/task-actions';
+import { deleteTask, updateTaskStatus } from '@/actions/task-actions';
+import ChangeStateTask from '../tasks/changeStateTask';
 
 const ProjectsTasksList = async ({ project }: ProjectsTasksListProps) => {
   return (
@@ -92,21 +93,12 @@ const ProjectsTasksList = async ({ project }: ProjectsTasksListProps) => {
                   </div>
 
                   <div className="flex flex-col gap-2 sm:flex-row lg:flex-col">
-                    <Select>
-                      <SelectTrigger className="w-full sm:w-[180px] lg:w-[180px]">
-                        <SelectValue placeholder="Cambiar estado" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Estados</SelectLabel>
-                          <SelectItem value="PENDING">Pendiente</SelectItem>
-                          <SelectItem value="IN_PROGRESS">
-                            En progreso
-                          </SelectItem>
-                          <SelectItem value="COMPLETED">Completada</SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
+                    {/* here goes the othe component */}
+                    <ChangeStateTask
+                      taskId={task.id}
+                      currentStatus={task.status}
+                      projectId={project.id}
+                    />
 
                     <Button variant="outline">Editar</Button>
                     {/* <Button variant="destructive">Eliminar</Button> */}

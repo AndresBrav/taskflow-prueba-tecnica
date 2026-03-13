@@ -52,3 +52,25 @@ export const deleteTask = async (formData: FormData) => {
     throw new Error('No se pudo eliminar la tarea');
   }
 };
+
+export async function updateTaskStatus(formData: FormData) {
+  const id = formData.get('idTask') as string;
+  const projectId = formData.get('projectId') as string;
+  const status = formData.get('changeStateTask') as string;
+
+  // console.log('id es', id, 'status', status);
+
+  try {
+    await prisma.task.update({
+      where: { id },
+      data: {
+        status: status as 'PENDING' | 'IN_PROGRESS' | 'COMPLETED',
+      },
+    });
+
+    // revalidate the page to see the changes
+    revalidatePath(`/projects/${projectId}`);
+  } catch (error) {
+    console.error('Error al actualizar:', error);
+  }
+}
