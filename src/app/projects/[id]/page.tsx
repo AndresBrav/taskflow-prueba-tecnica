@@ -16,6 +16,18 @@ import { getProjectWithTasksById } from '@/lib/data/projects';
 import ProjectsTasksList from '@/components/project/projects-tasks';
 import { createTask } from '@/actions/task-actions';
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+
 const ProjectDetailPage = async ({ params }: ProjectProps) => {
   const { id } = await params;
   // obtenemos el proyecto con sus tareas, si no existe se muestra la página de 404
@@ -72,13 +84,49 @@ const ProjectDetailPage = async ({ params }: ProjectProps) => {
               <Link href={`/projects/${project.id}/edit`}>Editar proyecto</Link>
             </Button>
 
-            {/* <Button variant="destructive">Eliminar proyecto</Button> */}
+            {/* <Button variant="destructive">Eliminar proyecto</Button>
             <form action={deleteProject}>
               <input type="hidden" name="id" value={project.id} />
               <Button type="submit" variant="destructive">
                 Eliminar proyecto
               </Button>
-            </form>
+            </form> */}
+            <AlertDialog>
+              {/* El Trigger es el botón que el usuario ve primero */}
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive">Eliminar proyecto</Button>
+              </AlertDialogTrigger>
+
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    ¿Estás absolutamente seguro?
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Esta accion no se puede deshacer. Se eliminará
+                    permanentemente el proyecto
+                    <strong> "{project.name}"</strong> y todas las tareas
+                    asociadas.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+
+                <AlertDialogFooter className="flex flex-col gap-2 sm:flex-row sm:justify-end sm:gap-3">
+                  <AlertDialogCancel className="w-full sm:w-auto mt-0">
+                    Cancelar
+                  </AlertDialogCancel>
+
+                  <form action={deleteProject} className="w-full sm:w-auto">
+                    <input type="hidden" name="id" value={project.id} />
+                    <AlertDialogAction
+                      type="submit"
+                      className="w-full sm:w-auto bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    >
+                      Eliminar definitivamente
+                    </AlertDialogAction>
+                  </form>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </section>
 
