@@ -10,13 +10,6 @@ export async function createTask(formData: FormData) {
   const prioritytasks = formData.get('prioritytasks') as string;
   const descriptiontask = formData.get('descriptiontask') as string;
 
-  //   console.log(
-  //     'the datas are: ',
-  //     idproject,
-  //     titletask,
-  //     prioritytasks,
-  //     descriptiontask
-  //   );
   try {
     // Crear una nueva tarea en la base de datos
     const newTask = await prisma.task.create({
@@ -36,3 +29,24 @@ export async function createTask(formData: FormData) {
     throw new Error('No se pudo crear la tarea');
   }
 }
+
+export const deleteTask = async (formData: FormData) => {
+  try {
+    const idTask = formData.get('id') as string;
+    const idProject = formData.get('idProject') as string;
+    // console.log('the id was passed', idTask);
+
+    if (!idTask) return;
+
+    const deleteTask = await prisma.task.delete({
+      where: {
+        id: idTask,
+      },
+    });
+
+    revalidatePath(`/projects/${idProject}`); /* clear the cache */
+  } catch (error) {
+    console.error('Error  al eliminar la tarea: ', error);
+    throw new Error('No se pudo eliminar la tarea');
+  }
+};

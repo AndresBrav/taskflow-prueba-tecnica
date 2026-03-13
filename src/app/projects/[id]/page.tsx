@@ -78,21 +78,12 @@ const ProjectDetailPage = async ({ params }: ProjectProps) => {
               <Link href="/projects">Volver</Link>
             </Button>
 
-            {/* <Button variant="outline">Editar proyecto</Button>
-             */}
             <Button variant="outline" asChild>
               <Link href={`/projects/${project.id}/edit`}>Editar proyecto</Link>
             </Button>
 
-            {/* <Button variant="destructive">Eliminar proyecto</Button>
-            <form action={deleteProject}>
-              <input type="hidden" name="id" value={project.id} />
-              <Button type="submit" variant="destructive">
-                Eliminar proyecto
-              </Button>
-            </form> */}
             <AlertDialog>
-              {/* El Trigger es el botón que el usuario ve primero */}
+              {/* the Trigger  is the button*/}
               <AlertDialogTrigger asChild>
                 <Button variant="destructive">Eliminar proyecto</Button>
               </AlertDialogTrigger>
