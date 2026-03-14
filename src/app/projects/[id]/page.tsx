@@ -125,7 +125,7 @@ const ProjectDetailPage = async ({ params }: ProjectProps) => {
           <CreateTaskComponent project={project} />
           <Card>
             <CardHeader>
-              <CardTitle>Filtros</CardTitle>
+              <CardTitle>Filtros de las tareas</CardTitle>
             </CardHeader>
 
             <CardContent className="space-y-4">
@@ -165,6 +165,10 @@ const ProjectDetailPage = async ({ params }: ProjectProps) => {
                     </SelectGroup>
                   </SelectContent>
                 </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Button variant="secondary">Filtrar Tareas</Button>
               </div>
             </CardContent>
           </Card>

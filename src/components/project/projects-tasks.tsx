@@ -29,7 +29,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { deleteTask, updateTaskStatus } from '@/actions/task-actions';
+import { deleteTask } from '@/actions/task-actions';
 import ChangeStateTask from '../tasks/changeStateTask';
 
 const ProjectsTasksList = async ({ project }: ProjectsTasksListProps) => {

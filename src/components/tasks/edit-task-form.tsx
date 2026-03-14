@@ -106,8 +106,6 @@ const EditTaskForm = ({ task, projectId }: EditTaskFormProps) => {
 
               <div className="flex gap-3 pt-2">
                 <SubmitButtonEditTask />
-                {/* <Button type="submit">Guardar cambios</Button> */}
-
                 <Button variant="outline" asChild>
                   <Link href={`/projects/${projectId}`}>Cancelar</Link>
                 </Button>
