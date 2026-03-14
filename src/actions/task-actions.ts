@@ -4,7 +4,14 @@ import { prisma } from '@/lib/prisma';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 
-export async function createTask(formData: FormData) {
+export interface FormState {
+  error?: string;
+}
+
+export async function createTask(
+  _prevState: FormState | null,
+  formData: FormData
+) {
   const idproject = formData.get('id') as string;
   const titletask = formData.get('titletask') as string;
   const prioritytasks = formData.get('prioritytasks') as string;
@@ -24,11 +31,12 @@ export async function createTask(formData: FormData) {
     });
 
     console.log('Tarea creada: ', newTask);
-    // return newTask;
     revalidatePath(`/projects/${idproject}`);
+    return null; // <-- return null if everything goes okay
+    // return newTask;
   } catch (error) {
     console.error('Error al crear la tarea: ', error);
-    throw new Error('No se pudo crear la tarea');
+    return { error: 'No se pudo crear la tarea' };
   }
 }
 

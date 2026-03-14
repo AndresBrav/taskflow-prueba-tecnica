@@ -3,7 +3,7 @@
 import { useActionState } from 'react';
 import Link from 'next/link';
 import { updateProject } from '@/actions/project-actions';
-import { SubmitEditButton } from '@/components/project/submit-edit';
+import { SubmitEditButton } from '@/components/project/submit-button';
 import { Button } from '@/components/ui/button';
 import { CardContent } from '@/components/ui/card';
 import { Project, FormState } from '@/types/index';

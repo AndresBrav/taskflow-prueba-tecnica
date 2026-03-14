@@ -42,14 +42,14 @@ export interface RecentTask {
   };
 }
 
-// contiene el id que se va a pasar a la página de edición del proyecto
+// contains the ID that will be passed to the project's edit page
 export type ProjectProps = {
   params: Promise<{
     id: string;
   }>;
 };
 
-// obtenemos el número de tareas por estado para mostrarlo en el proyecto
+// We retrieve the number of tasks by status to display it in the project
 export type ProjectWithTasks = Prisma.ProjectGetPayload<{
   include: { tasks: true };
 }>;
