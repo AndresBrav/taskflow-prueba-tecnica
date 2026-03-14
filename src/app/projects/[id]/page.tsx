@@ -1,19 +1,10 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { deleteProject } from '@/actions/project-actions';
-import type { ProjectProps } from '@/types/index'; //types
-import { getProjectWithTasksById } from '@/lib/data/projects';
+// app/projects/[id]/page.tsx
+import TaskFilters from '@/components/tasks/TaskFilters';
+import CreateTaskComponent from '@/components/tasks/createTask';
 import ProjectsTasksList from '@/components/project/projects-tasks';
+import { getProjectWithTasksById } from '@/lib/data/projects';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,12 +16,23 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import CreateTaskComponent from '@/components/tasks/createTask';
+import { deleteProject } from '@/actions/project-actions';
 
-const ProjectDetailPage = async ({ params }: ProjectProps) => {
+// We define the interface for the page's props
+interface Props {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ status?: string; priority?: string }>;
+}
+
+export default async function ProjectDetailPage({
+  params,
+  searchParams,
+}: Props) {
   const { id } = await params;
-  // we get the project with his tasks
-  const project = await getProjectWithTasksById(id);
+  const filters = await searchParams; // We get the filters from url
+
+  // The magic: Prisma now brings us filtered tasks
+  const project = await getProjectWithTasksById(id, filters);
 
   return (
     <div className="min-h-screen p-6">
@@ -121,64 +123,15 @@ const ProjectDetailPage = async ({ params }: ProjectProps) => {
         </section>
 
         <section className="grid gap-6 xl:grid-cols-3">
-          {/* we import the component to create tasks*/}
           <CreateTaskComponent project={project} />
-          <Card>
-            <CardHeader>
-              <CardTitle>Filtros de las tareas</CardTitle>
-            </CardHeader>
 
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Estado</label>
-
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Todos los estados" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Estados</SelectLabel>
-                      <SelectItem value="ALL">Todos</SelectItem>
-                      <SelectItem value="PENDING">Pendiente</SelectItem>
-                      <SelectItem value="IN_PROGRESS">En progreso</SelectItem>
-                      <SelectItem value="COMPLETED">Completada</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Prioridad</label>
-
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Todas las prioridades" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Prioridades</SelectLabel>
-                      <SelectItem value="ALL">Todas</SelectItem>
-                      <SelectItem value="HIGH">Alta</SelectItem>
-                      <SelectItem value="MEDIUM">Media</SelectItem>
-                      <SelectItem value="LOW">Baja</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="space-y-2">
-                <Button variant="secondary">Filtrar Tareas</Button>
-              </div>
-            </CardContent>
-          </Card>
+          {/* Our new filter component */}
+          <TaskFilters />
         </section>
 
-        {/* lista de tareas de los proyectos */}
+        {/* Task List (Already filtered in project.tasks) */}
         <ProjectsTasksList project={project} />
       </div>
     </div>
   );
-};
-
-export default ProjectDetailPage;
+}

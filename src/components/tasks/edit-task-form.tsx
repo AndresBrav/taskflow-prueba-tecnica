@@ -14,7 +14,7 @@ import {
 import { updateTask } from '@/actions/task-actions';
 import Link from 'next/link';
 import type { EditTaskFormProps } from '@/types/index';
-import { SubmitButtonEditTask } from './submit-buttonTask';
+import { SubmitButtonEditTask } from '@/components/tasks/Submit-buttonTask';
 import { useActionState } from 'react';
 import { FormState } from '@/types/index';
 
