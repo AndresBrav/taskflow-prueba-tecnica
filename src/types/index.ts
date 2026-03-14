@@ -53,3 +53,14 @@ export type ProjectProps = {
 export type ProjectWithTasks = Prisma.ProjectGetPayload<{
   include: { tasks: true };
 }>;
+
+export interface Project {
+  id: string;
+  name: string;
+  description: string | null;
+  color: string;
+}
+
+export interface FormState {
+  error?: string;
+}
