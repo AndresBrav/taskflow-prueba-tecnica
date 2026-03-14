@@ -1,4 +1,5 @@
 import { Prisma } from '@/generated/prisma/browser';
+import type { Task } from '@/generated/prisma/client';
 export interface RecentTasksListProps {
   tasks: RecentTask[];
 }
@@ -63,4 +64,16 @@ export interface Project {
 
 export interface FormState {
   error?: string;
+}
+
+export interface EditTaskFormProps {
+  task: Task;
+  projectId: string;
+}
+
+export interface Props {
+  params: Promise<{
+    id: string; // id project
+    taskId: string; // ID task
+  }>;
 }

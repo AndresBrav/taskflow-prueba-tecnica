@@ -12,3 +12,13 @@ export function SubmitButtonCreateTask() {
     </Button>
   );
 }
+
+export const submitButtonEditTask = () => {
+  const { pending } = useFormStatus(); // pending is true while the accion is running
+
+  return (
+    <Button type="submit" disabled={pending}>
+      {pending ? 'Guardando...' : 'Guardar cambios'}
+    </Button>
+  );
+};
