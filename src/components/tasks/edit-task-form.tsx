@@ -14,8 +14,12 @@ import {
 import { updateTask } from '@/actions/task-actions';
 import Link from 'next/link';
 import type { EditTaskFormProps } from '@/types/index';
+import { SubmitButtonEditTask } from './submit-buttonTask';
+import { useActionState } from 'react';
+import { FormState } from '@/types/index';
 
 const EditTaskForm = ({ task, projectId }: EditTaskFormProps) => {
+  const [state, formAction] = useActionState(updateTask, null);
   return (
     <div className="min-h-screen p-6">
       <div className="mx-auto max-w-3xl space-y-8">
@@ -32,7 +36,7 @@ const EditTaskForm = ({ task, projectId }: EditTaskFormProps) => {
           </CardHeader>
 
           <CardContent>
-            <form action={updateTask} className="space-y-4">
+            <form action={formAction} className="space-y-4">
               <input type="hidden" name="id" value={task.id} />
               <input type="hidden" name="idProject" value={projectId} />
 
@@ -101,7 +105,8 @@ const EditTaskForm = ({ task, projectId }: EditTaskFormProps) => {
               </div>
 
               <div className="flex gap-3 pt-2">
-                <Button type="submit">Guardar cambios</Button>
+                <SubmitButtonEditTask />
+                {/* <Button type="submit">Guardar cambios</Button> */}
 
                 <Button variant="outline" asChild>
                   <Link href={`/projects/${projectId}`}>Cancelar</Link>

@@ -13,7 +13,6 @@ interface EditProjectFormProps {
 }
 
 export default function EditProjectForm({ project }: EditProjectFormProps) {
-  // state tipado con nuestra interfaz FormState
   const [state, formAction] = useActionState<FormState | null, FormData>(
     updateProject,
     null

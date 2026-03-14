@@ -83,7 +83,10 @@ export async function updateTaskStatus(formData: FormData) {
   }
 }
 
-export const updateTask = async (formData: FormData) => {
+export const updateTask = async (
+  _prevState: FormState | null,
+  formData: FormData
+) => {
   const id = formData.get('id') as string;
   const title = formData.get('title') as string;
   const description = formData.get('description') as string;
@@ -107,6 +110,8 @@ export const updateTask = async (formData: FormData) => {
     revalidatePath(`/projects/${idProject}`);
   } catch (error) {
     console.log(error);
+    return { error: 'Error al actualizar la tarea' };
   }
   redirect(`/projects/${idProject}`);
+  return null;
 };

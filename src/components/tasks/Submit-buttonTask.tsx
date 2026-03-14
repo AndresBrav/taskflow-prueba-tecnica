@@ -13,7 +13,7 @@ export function SubmitButtonCreateTask() {
   );
 }
 
-export const submitButtonEditTask = () => {
+export const SubmitButtonEditTask = () => {
   const { pending } = useFormStatus(); // pending is true while the accion is running
 
   return (
