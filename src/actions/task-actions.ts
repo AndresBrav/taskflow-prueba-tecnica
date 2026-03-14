@@ -4,39 +4,60 @@ import { prisma } from '@/lib/prisma';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 
-export interface FormState {
-  error?: string;
-}
+import { taskSchema, type FormState } from '@/lib/zod';
 
 export async function createTask(
   _prevState: FormState | null,
   formData: FormData
-) {
-  const idproject = formData.get('id') as string;
-  const titletask = formData.get('titletask') as string;
-  const prioritytasks = formData.get('prioritytasks') as string;
-  const statetask = formData.get('statetask') as string;
-  const descriptiontask = formData.get('descriptiontask') as string;
+): Promise<FormState> {
+  // 1. We validate the data using Zod
+  const validatedFields = taskSchema.safeParse({
+    title: formData.get('titletask'),
+    description: formData.get('descriptiontask'),
+    projectId: formData.get('id'),
+  });
+
+  // 2. If Zod detects errors, we return them immediately
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Error de validación. Revisa los campos.',
+    };
+  }
+
+  // 3. Validated data, ready to use
+  const { title, description, projectId } = validatedFields.data;
+
+  // We extract the ones that are not in the Zod schema (Selects)
+  const priority = formData.get('prioritytasks') as 'LOW' | 'MEDIUM' | 'HIGH';
+  const status = formData.get('statetask') as
+    | 'PENDING'
+    | 'IN_PROGRESS'
+    | 'COMPLETED';
 
   try {
-    // Create a new task in database
-    const newTask = await prisma.task.create({
+    await prisma.task.create({
       data: {
-        title: titletask,
-        description: descriptiontask,
-        status: statetask as 'PENDING' | 'IN_PROGRESS' | 'COMPLETED',
-        priority: prioritytasks as 'LOW' | 'MEDIUM' | 'HIGH',
-        projectId: idproject,
+        title,
+        description,
+        status,
+        priority,
+        projectId,
       },
     });
 
-    console.log('Tarea creada: ', newTask);
-    revalidatePath(`/projects/${idproject}`);
-    return null; // <-- return null if everything goes okay
-    // return newTask;
+    revalidatePath(`/projects/${projectId}`);
+    return {
+      message: 'Tarea creada con éxito',
+      errors: {},
+      success: true,
+    };
   } catch (error) {
-    console.error('Error al crear la tarea: ', error);
-    return { error: 'No se pudo crear la tarea' };
+    console.error('Database Error:', error);
+    return {
+      message: 'Error de base de datos: No se pudo crear la tarea.',
+      errors: {},
+    };
   }
 }
 
