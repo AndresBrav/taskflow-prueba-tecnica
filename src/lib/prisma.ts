@@ -1,14 +1,10 @@
 // src/lib/prisma.ts
-import 'dotenv/config';
 import { PrismaPg } from '@prisma/adapter-pg';
-// Usamos ruta relativa para evitar fallos de resolución en el build de Vercel
 import { PrismaClient } from '../generated/prisma/client';
 
-interface CustomGlobal {
+const globalForPrisma = globalThis as {
   prisma?: PrismaClient;
-}
-
-const globalForPrisma = globalThis as unknown as CustomGlobal;
+};
 
 const connectionString = process.env.DATABASE_URL;
 
@@ -16,7 +12,7 @@ if (!connectionString) {
   throw new Error('DATABASE_URL no está definida en las variables de entorno');
 }
 
-function createPrismaClient(): PrismaClient {
+function createPrismaClient() {
   const adapter = new PrismaPg({ connectionString });
   return new PrismaClient({ adapter });
 }
