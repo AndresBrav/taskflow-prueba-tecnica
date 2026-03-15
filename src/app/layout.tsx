@@ -1,25 +1,24 @@
-import type { Metadata } from "next";
-import { Geist_Mono, Roboto } from "next/font/google"; // Limpiamos los imports
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import Navegation from "@/components/navegation";
+import type { Metadata } from 'next';
+import { Geist_Mono, Roboto } from 'next/font/google'; // Limpiamos los imports
+import './globals.css';
+import { ThemeProvider } from '@/components/theme-provider';
+import Navegation from '@/components/Navegation';
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 // Configurate Roboto
 const fontRoboto = Roboto({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  variable: "--font-sans",
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  variable: '--font-sans',
 });
 
-
 export const metadata: Metadata = {
-  title: "TaskFlow - Gestión de Proyectos",
-  description: "Sistema de gestión de tareas desarrollado con Next.js",
+  title: 'TaskFlow - Gestión de Proyectos',
+  description: 'Sistema de gestión de tareas desarrollado con Next.js',
 };
 
 export default function RootLayout({
@@ -39,9 +38,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navegation />
-          <main>
-            {children}
-          </main>
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>

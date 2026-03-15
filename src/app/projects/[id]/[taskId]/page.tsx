@@ -1,5 +1,5 @@
 import { getTaskByID } from '@/lib/data/tasks';
-import EditTaskForm from '@/components/tasks/edit-task-form';
+import EditTaskForm from '@/components/tasks/EditTaskForm';
 import type { Props } from '@/types/index';
 
 const EditTaskPage = async ({ params }: Props) => {

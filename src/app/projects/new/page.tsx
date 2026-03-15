@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { createProject } from '@/actions/project-actions';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { SubmitButton } from '@/components/project/submit-button';
+import { SubmitButton } from '@/components/project/SubmitProjectButtons';
 
 const NewProjectPage = () => {
   // state: will receive whatever the action returns (errors, etc.)

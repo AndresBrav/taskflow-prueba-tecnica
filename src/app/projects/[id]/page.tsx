@@ -1,7 +1,7 @@
 // app/projects/[id]/page.tsx
 import TaskFilters from '@/components/tasks/TaskFilters';
-import CreateTaskComponent from '@/components/tasks/createTask';
-import ProjectsTasksList from '@/components/project/projects-tasks';
+import CreateTaskComponent from '@/components/tasks/CreateTaskComponent';
+import ProjectsTasksList from '@/components/project/ProjectsTasksList';
 import { getProjectWithTasksById } from '@/lib/data/projects';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';

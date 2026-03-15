@@ -13,7 +13,7 @@ import {
 import { updateTask } from '@/actions/task-actions';
 import Link from 'next/link';
 import type { EditTaskFormProps } from '@/types/index';
-import { SubmitButtonEditTask } from '@/components/tasks/Submit-buttonTask';
+import { SubmitButtonEditTask } from '@/components/tasks/SubmitTaskButtons';
 import { useActionState } from 'react';
 
 const EditTaskForm = ({ task, projectId }: EditTaskFormProps) => {

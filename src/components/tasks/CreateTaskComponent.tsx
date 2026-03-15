@@ -1,5 +1,5 @@
 'use client';
-import { SubmitButtonCreateTask } from '@/components/tasks/Submit-buttonTask';
+import { SubmitButtonCreateTask } from '@/components/tasks/SubmitTaskButtons';
 import { useActionState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
