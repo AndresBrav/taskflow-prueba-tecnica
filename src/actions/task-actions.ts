@@ -31,6 +31,8 @@ export async function createTask(
     });
 
     console.log('Tarea creada: ', newTask);
+    revalidatePath('/'); // dashboard
+    revalidatePath('/projects');
     revalidatePath(`/projects/${idproject}`);
     return null; // <-- return null if everything goes okay
     // return newTask;
@@ -54,6 +56,8 @@ export const deleteTask = async (formData: FormData) => {
       },
     });
 
+    revalidatePath('/'); // dashboard
+    revalidatePath('/projects');
     revalidatePath(`/projects/${idProject}`); /* clear the cache */
   } catch (error) {
     console.error('Error  al eliminar la tarea: ', error);
@@ -77,6 +81,8 @@ export async function updateTaskStatus(formData: FormData) {
     });
 
     // revalidate the page to see the changes
+    revalidatePath('/'); // dashboard
+    revalidatePath('/projects');
     revalidatePath(`/projects/${projectId}`);
   } catch (error) {
     console.error('Error al actualizar:', error);
@@ -107,6 +113,8 @@ export const updateTask = async (
       },
     });
 
+    revalidatePath('/'); // dashboard
+    revalidatePath('/projects');
     revalidatePath(`/projects/${idProject}`);
   } catch (error) {
     console.log(error);

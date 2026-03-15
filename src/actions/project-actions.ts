@@ -3,7 +3,6 @@
 import { prisma } from '@/lib/prisma';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { error } from 'console';
 
 export interface FormState {
   error?: string;
@@ -33,6 +32,7 @@ export async function createProject(
     return { error: 'Error al conectar con la base de datos' };
   }
 
+  revalidatePath('/'); // reload dashboard
   revalidatePath('/projects'); //reload the page
   redirect('/projects'); //redirect to the page
 }
@@ -65,6 +65,7 @@ export async function updateProject(
     },
   });
 
+  revalidatePath('/'); // dashboard
   revalidatePath('/projects');
   revalidatePath(`/projects/${id}`);
   revalidatePath(`/projects/${id}/edit`);
@@ -85,6 +86,7 @@ export const deleteProject = async (formData: FormData) => {
     },
   });
 
+  revalidatePath('/'); // dashboard
   revalidatePath('/projects');
   redirect('/projects');
 };
