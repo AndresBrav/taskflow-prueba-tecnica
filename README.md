@@ -8,6 +8,8 @@
     El sistema permitirá crear proyectos, agregar tareas dentro de cada proyecto y hacer seguimiento del estado de las tareas.
     No se requiere autenticación de usuarios, ya que la aplicación está pensada para uso individual.
 
+    - puedes ver el proyecto deployado en el siguiente enlace: https://taskflow-prueba-tecnica.vercel.app/
+
 ## Tecnologías utilizadas (con versiones).
 
     se uso
@@ -18,6 +20,8 @@
     - Navegador Brave 1.88.132 (Build oficial) (64 bits)
     - Node 20.19.4
     - npm 10.8.2
+    - Supabase
+    - Vercel
 
 ## Decisiones técnicas / Librerías utilizadas: sección donde justifiques cada librería adicional que hayas usado (por qué la elegiste, qué problema resuelve). Esto se evalúa positivamente.
 
