@@ -16,16 +16,22 @@
     - DBngin 1.4.0
     - PostgreSQL 17.0
     - Navegador Brave 1.88.132 (Build oficial) (64 bits)
+    - Node 20.19.4
+    - npm 10.8.2
 
 ## Decisiones técnicas / Librerías utilizadas: sección donde justifiques cada librería adicional que hayas usado (por qué la elegiste, qué problema resuelve). Esto se evalúa positivamente.
 
-    Se ha usado shadcn/ui la version 4.0.2 como librería de componentes para la interfaz de usuario.
+    - Se ha usado el gestor de dependencias npm porque es el gestor predeterminado de Node js lo cual nos garantiza una compatibilidad nativa con Next js 16
+
+    - Se ha usado shadcn/ui la version 4.0.2 como librería de componentes para la interfaz de usuario.
     La principal razón para elegir esta librería es que acelera el desarrollo de la interfaz y junto con Tailwind css te permite construir interfaces visualmente consistentes
 
 ## Requisitos previos (Node.js, PostgreSQL, etc.).
 
+    - contar con Visual Studio Code 1.111.0 o otro editor de codigo moderno
     - contar con la version minima de Node js 20.9
     - contar con Postgres 17.0 o DBngin para administrar base de datos en nuestro caso PostgreSQL 17.0
+    - contar con un navegador Brave 1.88.132 o Google Chrome 145.0.7632.162
 
 ## Instrucciones de instalación paso a paso:
 
@@ -34,17 +40,20 @@ Paso 1: crear una proyecto en postgres con el nombre "taskflow" si lo haces por 
 ## Clonar repositorio.
 
 Paso 2: ejecutar el comando en el terminal:
-git clone https://github.com/AndresBrav/taskflow-prueba-tecnica.git
-esto descargara el proyecto en el directorio y creara la carpeta
-"taskflow-prueba-tecnica"
-Paso 3:  
- tenemos que abrir la carpeta "taskflow-prueba-tecnica" en un editor como Visual Studio Code
+
+- git clone https://github.com/AndresBrav/taskflow-prueba-tecnica.git
+  esto descargara el proyecto en el directorio y creara la carpeta
+  "taskflow-prueba-tecnica"
+  Paso 3:  
+   tenemos que abrir la carpeta "taskflow-prueba-tecnica" en un editor como Visual Studio Code
 
 ## Instalar dependencias.
 
 Paso 4:
-una ves dentro de la carpeta "taskflow-prueba-tecnica" en el terminal le damos a: - npm install
-este comando instalara toda las librerias que se uso en el proyecto
+una ves dentro de la carpeta "taskflow-prueba-tecnica" en el terminal le damos a:
+
+- npm install
+  este comando instalara toda las librerias que se uso en el proyecto
 
 ## Configurar variables de entorno.
 
@@ -63,17 +72,23 @@ en nuestro caso: - user: postgress - pass: - db: taskflow
 ## Ejecutar migraciones de Prisma.
 
 Paso 6:
-ahora solo en desarrollo vamos a limpiar todo con el siguiente comando: - npx prisma migrate reset
-Paso 7:
-ahora instalaremos el cliente de prisma con el comando: - npx prisma generate
-este comando creara la capeta "generated" en la raiz del proyecto
+ahora vamos a subir las tablas de nuestras migraciones a nuestra base de datos
+
+- npx prisma migrate dev
+
+  Paso 7:
+  ahora instalaremos el cliente de prisma con el comando:
+  - npx prisma generate
+    este comando creara la capeta "generated" en la raiz del proyecto
 
 ## Ejecutar seed (datos de ejemplo).
 
 Paso 8:
 tenemos un seed para subir datos a la base de datos se encuentra en la carpeta
-/prisma/seed.ts puedes ver los datos de prueba, tenemos que ejecutar el comando: - npx prisma db seed
-esto subira los datos del seed a la base de datos local
+/prisma/seed.ts puedes ver los datos de prueba, tenemos que ejecutar el comando:
+
+- npx prisma db seed
+  esto subira los datos del seed a la base de datos local
 
 ## Levantar el servidor de desarrollo.
 
@@ -99,3 +114,5 @@ ahora es hora de ver el proyecto corriendo para eso la base de datos local tiene
     DATABASE_URL="postgresql://postgres@localhost:5432/taskflow?schema=public"
 
 ## Capturas de pantalla de la aplicación (mínimo 3).
+
+![alt text](dashboard.png)
