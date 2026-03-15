@@ -9,14 +9,13 @@ import {
 } from '@/components/ui/select';
 import { updateTaskStatus } from '@/actions/task-actions';
 import { useRef } from 'react';
+import type { PropsChangeStateTask } from '@/types/index';
 
-interface Props {
-  taskId: string;
-  currentStatus: string;
-  projectId: string;
-}
-
-const ChangeStateTask = ({ taskId, currentStatus, projectId }: Props) => {
+const ChangeStateTask = ({
+  taskId,
+  currentStatus,
+  projectId,
+}: PropsChangeStateTask) => {
   // we use the refernce to the form
   const formRef = useRef<HTMLFormElement>(null);
 

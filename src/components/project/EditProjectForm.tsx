@@ -6,11 +6,8 @@ import { updateProject } from '@/actions/project-actions';
 import { SubmitEditButton } from '@/components/project/submit-button';
 import { Button } from '@/components/ui/button';
 import { CardContent } from '@/components/ui/card';
-import { Project, FormState } from '@/types/index';
-
-interface EditProjectFormProps {
-  project: Project;
-}
+import { FormState } from '@/types/index';
+import type { EditProjectFormProps } from '@/types/index';
 
 export default function EditProjectForm({ project }: EditProjectFormProps) {
   const [state, formAction] = useActionState<FormState | null, FormData>(

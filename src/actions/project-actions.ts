@@ -3,10 +3,7 @@
 import { prisma } from '@/lib/prisma';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-
-export interface FormState {
-  error?: string;
-}
+import type { FormState } from '@/types/index';
 
 export async function createProject(
   _prevState: FormState | null,

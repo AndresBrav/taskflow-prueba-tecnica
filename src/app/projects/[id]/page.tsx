@@ -17,17 +17,12 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { deleteProject } from '@/actions/project-actions';
-
-// We define the interface for the page's props
-interface Props {
-  params: Promise<{ id: string }>;
-  searchParams: Promise<{ status?: string; priority?: string }>;
-}
+import type { PropsProjectDetails } from '@/types/index';
 
 export default async function ProjectDetailPage({
   params,
   searchParams,
-}: Props) {
+}: PropsProjectDetails) {
   const { id } = await params;
   const filters = await searchParams; // We get the filters from url
 

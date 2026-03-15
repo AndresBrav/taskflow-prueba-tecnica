@@ -1,23 +1,13 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { Card, CardContent } from '@/components/ui/card';
 import {
   formatPriority,
   formatStatus,
   getPriorityStyles,
   getStatusStyles,
-} from '@/lib/task-utils'; // función para obtener los estilos según el estado de la tareas
+} from '@/lib/task-utils';
 import type { ProjectsTasksListProps } from '@/types/index'; // types from component
-
 import {
   AlertDialog,
   AlertDialogAction,

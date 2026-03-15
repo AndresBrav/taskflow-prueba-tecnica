@@ -1,7 +1,7 @@
 import { getProjectById } from '@/lib/data/projects';
 import type { ProjectProps } from '@/types/index';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-import EditProjectForm from '@/components/project/edit-project-form';
+import EditProjectForm from '@/components/project/EditProjectForm';
 import { notFound } from 'next/navigation';
 
 // server component

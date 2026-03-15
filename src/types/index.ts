@@ -77,3 +77,19 @@ export interface Props {
     taskId: string; // ID task
   }>;
 }
+
+export interface EditProjectFormProps {
+  project: Project;
+}
+
+export interface PropsChangeStateTask {
+  taskId: string;
+  currentStatus: string;
+  projectId: string;
+}
+
+// We define the interface for the page's props
+export interface PropsProjectDetails {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ status?: string; priority?: string }>;
+}
