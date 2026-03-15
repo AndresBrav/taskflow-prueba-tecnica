@@ -1,9 +1,9 @@
 export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import StatsCards from '@/components/dashboard/stats-cards';
-import RecentTasksList from '@/components/dashboard/recent-tasks-list';
-import TopPendingProjects from '@/components/dashboard/top-pending-projects';
+import StatsCards from '@/components/dashboard/StatsCards';
+import RecentTasksList from '@/components/dashboard/RecentTasksList';
+import TopPendingProjects from '@/components/dashboard/TopPendingProjects';
 import { getDashboardData } from '@/lib/data/dashboard';
 
 export default async function DashboardPage() {
