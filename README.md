@@ -115,4 +115,12 @@ ahora es hora de ver el proyecto corriendo para eso la base de datos local tiene
 
 ## Capturas de pantalla de la aplicación (mínimo 3).
 
-![alt text](dashboard.png)
+![alt text](images/Dashboard.png)
+
+![alt text](images/ProjectList.png)
+
+![alt text](images/EditProject.png)
+
+![alt text](<images/Tasks from Project.png>)
+
+![alt text](images/CreateTask.png)
