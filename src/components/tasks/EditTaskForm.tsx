@@ -50,6 +50,7 @@ const EditTaskForm = ({ task, projectId }: EditTaskFormProps) => {
                   placeholder="Ej: Sistema de inventario"
                   className="w-full rounded-md border px-3 py-2 text-sm"
                   required
+                  minLength={3}
                 />
               </div>
 
@@ -62,7 +63,9 @@ const EditTaskForm = ({ task, projectId }: EditTaskFormProps) => {
                   name="description"
                   defaultValue={task.description || ''}
                   placeholder="Describe brevemente el proyecto"
-                  className="min-h-[120px] w-full rounded-md border px-3 py-2 text-sm"
+                  className="min-h-30 w-full rounded-md border px-3 py-2 text-sm"
+                  required
+                  minLength={10}
                 />
               </div>
 
