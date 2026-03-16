@@ -46,76 +46,95 @@ Paso 1: crear una proyecto en postgres con el nombre "taskflow" si lo haces por 
 Paso 2: ejecutar el comando en el terminal:
 
 - git clone https://github.com/AndresBrav/taskflow-prueba-tecnica.git
-  esto descargara el proyecto en el directorio y creara la carpeta
-  "taskflow-prueba-tecnica"
-  Paso 3:  
-   tenemos que abrir la carpeta "taskflow-prueba-tecnica" en un editor como Visual Studio Code
+
+esto descargara el proyecto en el directorio y creara la carpeta "taskflow-prueba-tecnica"
+
+Paso 3:
+
+tenemos que abrir la carpeta "taskflow-prueba-tecnica" en un editor como Visual Studio Code
 
 ## Instalar dependencias.
 
 Paso 4:
+
 una ves dentro de la carpeta "taskflow-prueba-tecnica" en el terminal le damos a:
 
 - npm install
-  este comando instalara toda las librerias que se uso en el proyecto
+
+este comando instalara toda las librerias que se uso en el proyecto
 
 ## Configurar variables de entorno.
 
 Paso 5:
+
 tenemos que crear un archivo .env en la raiz del proyecto es en aqui que estara nuestra conexion a la base de datos
 Dentro del archivo .env el formato es el siguiente:
 DATABASE_URL="postgresql://user:pass@localhost:5432/db?schema=public"
-en nuestro caso: - user: postgress - pass: - db: taskflow
+en nuestro caso:
 
-    y nos quedaria lo siguiente
+- user: postgress
+- pass:
+- db: taskflow
 
-    - DATABASE_URL="postgresql://postgres@localhost:5432/taskflow?schema=public"
+y nos quedaria lo siguiente
 
-    copia o escribe el resultado en .env
+- DATABASE_URL="postgresql://postgres@localhost:5432/taskflow?schema=public"
+
+copia o escribe el resultado en .env
 
 ## Ejecutar migraciones de Prisma.
 
 Paso 6:
+
 ahora vamos a subir las tablas de nuestras migraciones a nuestra base de datos
 
 - npx prisma migrate dev
 
-  Paso 7:
-  ahora instalaremos el cliente de prisma con el comando:
-  - npx prisma generate
-    este comando creara la capeta "generated" en la raiz del proyecto
+Paso 7:
+
+ahora instalaremos el cliente de prisma con el comando:
+
+- npx prisma generate
+
+este comando creara la capeta "generated" en la raiz del proyecto
 
 ## Ejecutar seed (datos de ejemplo).
 
 Paso 8:
+
 tenemos un seed para subir datos a la base de datos se encuentra en la carpeta
 /prisma/seed.ts puedes ver los datos de prueba, tenemos que ejecutar el comando:
 
 - npx prisma db seed
-  esto subira los datos del seed a la base de datos local
+
+esto subira los datos del seed a la base de datos local
 
 ## Levantar el servidor de desarrollo.
 
 Paso 9:
-ahora es hora de ver el proyecto corriendo para eso la base de datos local tiene que estar prendida y en el proyecto le damos a: - npm run dev
 
-    nos aparecera informacion en el terminal como:
+ahora es hora de ver el proyecto corriendo para eso la base de datos local tiene que estar prendida y en el proyecto le damos a:
 
-    > task-flow@0.1.0 dev
-    > next dev
+- npm run dev
 
-    ▲ Next.js 16.1.6 (Turbopack)
-    - Local:         http://localhost:3000
-    - Network:       http://192.168.56.1:3000
-    - Environments: .env
+nos aparecera informacion en el terminal como:
 
-    abrimos el http://localhost:3000 en el navegador y veremos el proyecto
+> task-flow@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+
+- Local: http://localhost:3000
+- Network: http://192.168.56.1:3000
+- Environments: .env
+
+abrimos el http://localhost:3000 en el navegador y veremos el proyecto
 
 ## Variables de entorno necesarias (con ejemplo).
 
-    En el proyecto solo se uso la conexion a la base de datos como ejemplo se tiene:
+En el proyecto solo se uso la conexion a la base de datos como ejemplo se tiene:
 
-    DATABASE_URL="postgresql://postgres@localhost:5432/taskflow?schema=public"
+DATABASE_URL="postgresql://postgres@localhost:5432/taskflow?schema=public"
 
 ## Capturas de pantalla de la aplicación (mínimo 3).
 
