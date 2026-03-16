@@ -50,6 +50,7 @@ const NewProjectPage = () => {
                   placeholder="Ej: Sistema de inventario"
                   className="w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                   required
+                  minLength={3}
                 />
               </div>
 
@@ -61,7 +62,9 @@ const NewProjectPage = () => {
                   id="description"
                   name="description"
                   placeholder="Describe brevemente el proyecto"
-                  className="min-h-[120px] w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                  className="min-h-30 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                  required
+                  minLength={10}
                 />
               </div>
 
