@@ -1,4 +1,5 @@
 'use client';
+
 import { SubmitButtonCreateTask } from '@/components/tasks/SubmitTaskButtons';
 import { useActionState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,21 +17,27 @@ import { ProjectsTasksListProps } from '@/types';
 
 const CreateTaskComponent = ({ project }: ProjectsTasksListProps) => {
   const [state, formAction] = useActionState(createTask, null);
+
   return (
     <Card className="xl:col-span-2">
       <CardHeader>
         <CardTitle>Nueva tarea</CardTitle>
       </CardHeader>
+
       <CardContent className="space-y-4">
         <form action={formAction}>
           <input type="hidden" name="id" value={project.id} />
+
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
               <label className="text-sm font-medium">Título</label>
+
               <input
                 type="text"
-                id="titletaks"
+                id="titletask"
                 name="titletask"
+                required
+                minLength={3}
                 placeholder="Ej: Diseñar dashboard principal"
                 className="w-full rounded-md border px-3 py-2 text-sm outline-none"
               />
@@ -39,10 +46,11 @@ const CreateTaskComponent = ({ project }: ProjectsTasksListProps) => {
             <div className="space-y-2">
               <label className="text-sm font-medium">Prioridad</label>
 
-              <Select name="prioritytasks">
+              <Select name="prioritytasks" defaultValue="LOW">
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Selecciona prioridad" />
                 </SelectTrigger>
+
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Prioridad</SelectLabel>
@@ -57,10 +65,11 @@ const CreateTaskComponent = ({ project }: ProjectsTasksListProps) => {
             <div className="space-y-2">
               <label className="text-sm font-medium">Estado</label>
 
-              <Select name="statetask">
+              <Select name="statetask" defaultValue="PENDING">
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Selecciona el Estado" />
                 </SelectTrigger>
+
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Estado</SelectLabel>
@@ -72,19 +81,22 @@ const CreateTaskComponent = ({ project }: ProjectsTasksListProps) => {
               </Select>
             </div>
           </div>
+
           <br />
           <div className="space-y-2">
             <label className="text-sm font-medium">Descripción</label>
+
             <textarea
               id="descriptiontask"
               name="descriptiontask"
+              required
+              minLength={10}
               placeholder="Describe brevemente la tarea"
               className="min-h-27.5 w-full rounded-md border px-3 py-2 text-sm outline-none"
             />
           </div>
 
           <div className="flex justify-end">
-            {/* <Button type="submit">Agregar tarea</Button> */}
             <SubmitButtonCreateTask />
           </div>
         </form>
