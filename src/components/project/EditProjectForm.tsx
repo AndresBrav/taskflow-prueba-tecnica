@@ -38,6 +38,7 @@ export default function EditProjectForm({ project }: EditProjectFormProps) {
             defaultValue={project.name}
             className="w-full rounded-md border px-3 py-2 text-sm focus:ring-2 focus:ring-ring"
             required
+            minLength={3}
           />
         </div>
 
@@ -50,6 +51,8 @@ export default function EditProjectForm({ project }: EditProjectFormProps) {
             name="description"
             defaultValue={project.description || ''}
             className="min-h-[120px] w-full rounded-md border px-3 py-2 text-sm focus:ring-2 focus:ring-ring"
+            required
+            minLength={10}
           />
         </div>
 
